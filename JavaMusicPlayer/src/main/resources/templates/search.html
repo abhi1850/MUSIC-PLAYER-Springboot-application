@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Song</title>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+        @import url('https://fonts.googleapis.com/css2?family=Aboreto&family=Kanit:wght@700&family=Prompt:wght@500&family=Shantell+Sans:wght@500&family=Ubuntu:wght@500;700&family=Unbounded:wght@500&display=swap');
+
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: url('https://cutewallpaper.org/29/download-wallpaper-music/2449818854.jpg') no-repeat;
+            background-size: cover;
+            background-position: center;
+            font-family: 'Aboreto', cursive;
+        font-family: 'Kanit', sans-serif;
+        font-family: 'Prompt', sans-serif;
+        font-family: 'Shantell Sans', cursive;
+        font-family: 'Ubuntu', sans-serif;
+        font-family: 'Unbounded', cursive;
+        }
+
+        header {
+            position : fixed;
+            top : 0;
+            left : 0;
+            width : 100%;
+            padding : 20px 100px;
+            display : flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 99;
+        }
+
+        .logo {
+            font-size: 2em;
+            color : #162938;
+            user-select: none;
+        }
+
+        .navigation a {
+            position : relative;
+            font-size: 1.1em;
+            color : #162938;
+            text-decoration: none;
+            font-weight: 500;
+            margin-left: 40px;
+
+        }
+
+        .navigation a ::after {
+            content : '';
+            position : absolute;
+            left : 0;
+            bottom : -6px;
+            width: 100%;
+            height: 3px;
+            background : #162938;
+            border-radius: 5px;
+            transform-origin: right;
+            transform : scaleX(0);
+            transition: transform .5s;
+        }
+
+        .navigation a :hover::after {
+            transform-origin: left;
+            transform : scaleX(0);
+        }
+
+        .navigation .btnLogin-popup {
+
+            width : 130px;
+            height : 50px;
+            background : transparent;
+            border: 2px solid #fff;
+            outline : none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1.1em;
+            color : #162938;
+            font-weight: 500;
+            margin-left: 40px;
+            transition: .5s;
+        }
+
+        .navigation .btnLogin-popup:hover {
+            background: #fff;
+            color : #162938;
+        }
+
+        .box{
+            position: relative;
+            width: 380px;
+            height: 450px;
+            background: #1c1c1c;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+
+        .box::before{
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 380px;
+            height: 420px;
+            background: linear-gradient(0deg, transparent, transparent, #45f3ff, #45f3ff, #45f3ff);
+            z-index: 1;
+            transform-origin: bottom right;
+            animation: animate 6s linear infinite;
+        }
+
+        .box::after{
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 380px;
+            height: 420px;
+            background: linear-gradient(0deg, transparent, transparent, #45f3ff, #45f3ff, #45f3ff);
+            z-index: 1;
+            transform-origin: bottom right;
+            animation: animate 6s linear infinite;
+            animation-delay: -3s;
+        }
+
+
+        .borderLine{
+            position: absolute;
+            top: 0;
+            inset: 0;
+        }
+        .borderLine::before{
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 380px;
+            height: 420px;
+            background: linear-gradient(0deg, transparent, transparent, #ff2770, #ff2770, #ff2770);
+            z-index: 1;
+            transform-origin: bottom right;
+            animation: animate 6s linear infinite;
+            animation-delay: -1.5s;
+        }
+
+        .borderLine::after{
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 380px;
+            height: 420px;
+            background: linear-gradient(0deg, transparent, transparent, #ff2770, #ff2770, #ff2770);
+            z-index: 1;
+            transform-origin: bottom right;
+            animation: animate 6s linear infinite;
+            animation-delay: -4.5s;
+        }
+
+        @keyframes animate{
+            0%{
+                transform: rotate(0deg);
+            }
+            100%{
+                transform: rotate(360deg);
+            }
+        }
+
+
+        .box form{
+            position: absolute;
+            inset: 4px;
+            background: #222;
+            padding: 50px 40px;
+            border-radius: 10px;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .box form h2{
+            color: #fff;
+            font-weight: 500;
+            text-align: center;
+            letter-spacing: 0.1em;
+
+        }
+
+        .box form .inputBox{
+            position: relative;
+            margin-top: 35px;
+            width: 300px;
+        }
+
+        .box form .inputBox input{
+            position: relative;
+            width: 100%;
+            padding: 20px 10px 10px;
+            background: transparent;
+            outline: none;
+            box-shadow: none;
+            border: none;
+            color: #b3a5f1;
+            text-shadow: 0px 0px 4px #a5b1f1;
+            font-size: 1em;
+            letter-spacing: 0.05em;
+            transition: 0.5s;
+            z-index: 10;
+            font-family: 'Unbounded', cursive;
+
+        }
+
+        .box form .inputBox span{
+            position: absolute;
+            left: 0;
+            padding: 20px 0px 10px;
+            pointer-events: none;
+            color: #8f8f8f;
+            font-size: 1em;
+            letter-spacing: 0.05em;
+            transition: 0.5s;
+
+        }
+
+        .box form .inputBox input:valid ~ span,
+        .box form .inputBox input:focus ~ span
+        {
+            color: #fff;
+            font-size: 0.75em;
+            transform: translateY(-34px);
+        }
+
+        .box form .inputBox i{
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 2px;
+            background: #fff;
+            border-radius: 4px;
+            overflow: hidden;
+            transition: 0.5s;
+            pointer-events: none;
+        }
+
+        .box form .links{
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .box form .links a{
+            margin: 20px 0px;
+            font-size: 0.75em;
+            color: #8f8f8f;
+            text-decoration: none;
+        }
+
+        .box form .links a:hover{
+            color: #fff;
+            transition: 0.4s;
+        }
+
+        .box form input[type="submit"]
+        {
+            border: none;
+            outline: none;
+            padding: 1px 5px;
+            background: #fff;
+            cursor: pointer;
+            font-size: 0.9em;
+            border-radius: 4px;
+            font-weight: 600;
+            width: 100px;
+            margin-top: 10px;
+            font-family: 'Unbounded', cursive;
+        }
+
+        .box form input[type="submit"]:hover{
+            background: chartreuse;
+            text-shadow: 0px 0px 2px rgb(255, 93, 93);
+            transition: 0.5s;
+            box-shadow: 0px 0px 7px cyan;
+        }
+
+        .box form input[type="submit"]:active{
+            opacity: 0.8;
+        }
+
+    </style>
+</head>
+<body>
+<header>
+  <h2 class="logo">Music Player</h2>
+  <nav class = "navigation">
+    <a th:href="@{'/about'}">About</a>
+    <a th:href="@{'/contact'}">Contact</a>
+    <a href = "@{'/index'}">Home</a>
+  </nav>
+</header>
+<div class="box">
+
+  <span class="borderLine"></span>
+  <form th:action = "@{/search-song}" method="get">
+
+    <h2>
+      Search Song
+    </h2>
+
+    <div class="inputBox">
+      <input type="text" id = "title" name = "title" required="required">
+      <span>Song Title</span>
+      <i></i>
+    </div>
+
+    <input type="submit" value="Search">
+
+  </form>
+
+</div>
+
+</body>
+</html>

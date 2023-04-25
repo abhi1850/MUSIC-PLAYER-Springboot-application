@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	  xmlns:background-image="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta charset="UTF-8">
+		<title>MUSIC PLAYER</title>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<style>
+			* {
+				margin: 0px;
+				padding: 0;
+				font-family: Arial, Helvetica, sans-serif;
+				/* background-color: #9e9fd3; */
+				background-image: url();
+				}
+
+				.heading {
+
+
+					display: flex;
+					box-shadow: 0px 1px 2px #232f3e;
+					background-image: url("https://media.istockphoto.com/id/1076840920/vector/music-background.jpg?s=612x612&w=0&k=20&c=bMG2SEUYaurIHAjtRbw7bmjLsXyT7iJUvAM5HjL3G3I=");
+					height: 80px;
+
+				}
+				h1 {
+					color: #ffff;
+					font-weight: bold;
+					margin-left: 600px;
+					background: transparent;
+					padding: 7px;
+
+
+				}
+
+
+				.outer-wrapper {
+					margin: 10px;
+					margin-left: 20px;
+					margin-right: 20px;
+					border: 1px solid black;
+					border-radius: 4px;
+					box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.9);
+					max-width: fit-content;
+					max-height: fit-content;
+
+
+				}
+				.table-wrapper {
+
+					overflow-y: scroll;
+					overflow-x: scroll;
+					height: fit-content;
+					max-height: 60vh;
+					background-color: #ffff;
+					margin-top: 30px;
+
+					margin: 15px;
+					padding-bottom: 20px;
+
+				}
+
+
+				table {
+
+					min-width: max-content;
+
+					border-collapse: separate;
+					border-spacing: 0px;
+
+				}
+
+
+
+				table th{
+					position: sticky;
+					top: 0px;
+					background-color: #133b5c;
+					color: rgb(241, 245, 179);
+
+					text-align: center;
+					font-weight: normal;
+					font-size: 18px;
+					outline: 0.7px solid #ffff;
+					border: 1.5px solid #ffff;
+
+				}
+
+
+
+				table th, table td {
+
+					padding: 15px;
+					padding-top: 10px;
+					padding-bottom: 5px;
+
+				}
+
+
+				table td {
+					text-align: left;
+					width: 150px;
+					font-size: 15px;
+					border: 1px solid rgb(177, 177, 177);
+					padding-left: 20px;
+
+
+
+				}
+
+				.table2 th{
+					text-align: left;
+					width: 140px;
+					font-size: 25px;
+					border: 1px solid rgb(177, 177, 177);
+					padding-left: 74px;
+
+				}
+
+				  table td:nth-child(3) {
+					width: 170px; /* adjust as needed */
+				}
+
+				.image_top{
+					width:150px;
+					height:150px;
+
+				}
+
+				.container {
+					position: relative;
+					width: 100%;
+					max-width: 400px;
+				  }
+
+				  .container img {
+					width: 100%;
+					height: auto;
+				  }
+
+				  .container .btn {
+					position: absolute;
+					top: 50%;
+					left: 50%;
+					transform: translate(-50%, -50%);
+					-ms-transform: translate(-50%, -50%);
+					background-color: rgb(220, 95, 95);
+					color: white;
+					font-size: 16px;
+					padding: 12px 24px;
+					border: none;
+					cursor: pointer;
+					border-radius: 5px;
+					text-align: center;
+				  }
+
+				  .container .btn:hover {
+					background-color: rgb(208, 29, 29);
+				  }
+
+
+				  .btn {
+					background-color: DodgerBlue; /* Blue background */
+					border: none; /* Remove borders */
+					color: white; /* White text */
+					padding: 12px 16px; /* Some padding */
+					font-size: 16px; /* Set a font size */
+					cursor: pointer; /* Mouse pointer on hover */
+					margin-left: 15px;
+				  }
+
+				  /* Darker background on mouse-over */
+				  .btn:hover {
+					background-color: rgb(76, 225, 65);
+				  }
+				/* Style the sidebar - fixed full height */
+				.sidebar {
+					height: 100%;
+					width: 620px;
+					position: fixed;
+					z-index: 1;
+					top: 85px;
+					left: 1010px;
+					background-color: #ffff;
+					overflow-x: hidden;
+					padding-top: 16px;
+				  }
+
+				  /* Style sidebar links */
+				  .sidebar a {
+					padding: 6px 8px 6px 16px;
+					text-decoration: none;
+					font-size: 20px;
+					color: #818181;
+					display: block;
+				  }
+
+				  /* Style links on mouse-over */
+				  .sidebar a:hover {
+					color: #f1f1f1;
+				  }
+
+				  /* Style the main content */
+				  .main {
+					margin-left: 10px; /* Same as the width of the sidenav */
+					padding: 0px 10px;
+				  }
+
+				  /* Add media queries for small screens (when the height of the screen is less than 450px, add a smaller padding and font-size) */
+				  @media screen and (max-height: 450px) {
+					.sidebar {padding-top: 10px;}
+					.sidebar a {font-size: 18px;}
+				  }
+				  #image {
+					position: absolute;
+					top: 0;
+					right: 0;
+					}
+		</style>
+	</head>
+
+	<body class="body" style="background-image: linear-gradient(30deg, red, navy);">
+		<div class="heading">
+			<h1><b>-- Music Player --</b></h1>
+		</div>
+
+		<br>
+		<button class="btn"><i class="fa fa-bars"></i><a th:href="@{'/index'}"> Home</a></button>
+		<button class="btn"><i class="fa fa-close"></i><a th:href="@{'/'}"> Close</a></button>
+		<button class = "btn"><i class = "fa fa-plus"></i><a th:href="@{'/new'}">Add</a></button>
+		<button class="btn"><i class="fa fa-search"></i><a th:href="@{'/search'}">Search</a></button>
+		<br>
+		<br>
+		<div class="outer-wrapper">
+			<div class="table-wrapper">
+				<table>
+					<img id = "image" src="https://media.tenor.com/SaNARgBciQ4AAAAC/listening-to-music-spongebob.gif" width="200" height="300"/>
+
+					<tbody>
+
+					<tr th:each="Song : ${listSong }">
+
+						<td th:text="${Song.title}" style="color: #0066cc;">Song Title</td>
+						<td th:text="${Song.file}">Song</td>
+						<td>
+							<audio controls th:src = "@{'/uploads/' + ${Song.file}}"></audio>
+						</td>
+						<td><a th:href="@{'/delete/' + ${Song.id}}" class="btn btn-danger btn-sm" style="color: white;">Delete</a></td>
+						<td><a th:href="@{'/edit/' + ${Song.id}}" class="btn btn-danger btn-sm" style="color: white;">Edit</a></td>
+					</tr>
+					<br><br>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+	</body>
+</html>
